@@ -198,6 +198,15 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""DefaultMask"",
+                    ""type"": ""Button"",
+                    ""id"": ""12b5f46d-7c21-4e44-a254-528da7922460"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -649,6 +658,17 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""RefreshLevel"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0f7a7f51-3005-4d4c-a505-277a2e6478ec"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""DefaultMask"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1248,6 +1268,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         m_Player_Build = m_Player.FindAction("Build", throwIfNotFound: true);
         m_Player_UIInteract1 = m_Player.FindAction("UIInteract1", throwIfNotFound: true);
         m_Player_RefreshLevel = m_Player.FindAction("RefreshLevel", throwIfNotFound: true);
+        m_Player_DefaultMask = m_Player.FindAction("DefaultMask", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1353,6 +1374,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Build;
     private readonly InputAction m_Player_UIInteract1;
     private readonly InputAction m_Player_RefreshLevel;
+    private readonly InputAction m_Player_DefaultMask;
     /// <summary>
     /// Provides access to input actions defined in input action map "Player".
     /// </summary>
@@ -1412,6 +1434,10 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Player/RefreshLevel".
         /// </summary>
         public InputAction @RefreshLevel => m_Wrapper.m_Player_RefreshLevel;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/DefaultMask".
+        /// </summary>
+        public InputAction @DefaultMask => m_Wrapper.m_Player_DefaultMask;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -1474,6 +1500,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @RefreshLevel.started += instance.OnRefreshLevel;
             @RefreshLevel.performed += instance.OnRefreshLevel;
             @RefreshLevel.canceled += instance.OnRefreshLevel;
+            @DefaultMask.started += instance.OnDefaultMask;
+            @DefaultMask.performed += instance.OnDefaultMask;
+            @DefaultMask.canceled += instance.OnDefaultMask;
         }
 
         /// <summary>
@@ -1521,6 +1550,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @RefreshLevel.started -= instance.OnRefreshLevel;
             @RefreshLevel.performed -= instance.OnRefreshLevel;
             @RefreshLevel.canceled -= instance.OnRefreshLevel;
+            @DefaultMask.started -= instance.OnDefaultMask;
+            @DefaultMask.performed -= instance.OnDefaultMask;
+            @DefaultMask.canceled -= instance.OnDefaultMask;
         }
 
         /// <summary>
@@ -1905,6 +1937,13 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnRefreshLevel(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "DefaultMask" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnDefaultMask(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "UI" which allows adding and removing callbacks.
