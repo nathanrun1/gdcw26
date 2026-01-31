@@ -19,9 +19,20 @@ namespace Utilities.Types
             { MaskColor.Blue, Color.blue }
         };
         
-        public static Color GetRGB(this MaskColor maskColor)
+        /// <summary>
+        /// Retrieves the actual 'Color' value associated with this mask color
+        /// </summary>
+        public static Color GetColor(this MaskColor maskColor)
         {
             return maskColorRGB[maskColor];
+        }
+
+        /// <summary>
+        /// Linearly interpolates between this mask color's actual 'Color' value and white 
+        /// </summary>
+        public static Color GetSoftColor(this MaskColor maskColor)
+        {
+            return Color.Lerp(maskColor.GetColor(), Color.white, 0.5f);
         }
     }
 }

@@ -16,9 +16,32 @@ namespace Managers
         [SerializeField] private Camera _mainCamera;
         
         private MaskColor _curMask = MaskColor.Default;
+        private Queue<MaskColor> _maskQueue = new();
 
+        /// <summary>
+        /// Invoked when the mask color changes
+        /// </summary>
         public event Action<MaskColor> onColorChange;
+        /// <summary>
+        /// Invoked when mask color enqueued to mask queue
+        /// </summary>
+        public event Action<MaskColor> onMaskEnqueue;
+        /// <summary>
+        /// Invoked when mask color dequeued from mask queue
+        /// </summary>
+        public event Action onMaskDequeue;
 
+        private void Start()
+        {
+            InputManager.Instance.playerInput.Player.Space.performed += OnInputSpace;
+        }
+
+        private void OnInputSpace(InputAction.CallbackContext _)
+        {
+            DequeueMaskColor();
+        }
+        
+        
         /// <summary>
         /// Changes the global mask color to the given color
         /// </summary>
@@ -26,7 +49,7 @@ namespace Managers
         public void ChangeMaskColor(MaskColor newColor)
         {
             _curMask = newColor;
-            _mainCamera.backgroundColor = Color.Lerp(newColor.GetRGB(), Color.white, 0.5f);
+            _mainCamera.backgroundColor = Color.Lerp(newColor.GetColor(), Color.white, 0.5f);
             onColorChange?.Invoke(newColor);
             Debug.Log($"New color: {newColor}");
         }
@@ -38,6 +61,26 @@ namespace Managers
         public MaskColor GetMaskColor()
         {
             return _curMask;
+        }
+
+        /// <summary>
+        /// Queues up the given mask color into the mask queue
+        /// </summary>
+        /// <param name="maskColor"></param>
+        public void QueueMaskColor(MaskColor maskColor)
+        {
+            _maskQueue.Enqueue(maskColor);
+            onMaskEnqueue?.Invoke(maskColor);
+        }
+
+        /// <summary>
+        /// Changes the mask color to the color at the top of the queue, if any
+        /// </summary>
+        public void DequeueMaskColor()
+        {
+            if (!_maskQueue.TryDequeue(out MaskColor newColor)) return;
+            onMaskDequeue?.Invoke();
+            ChangeMaskColor(newColor);
         }
     }
 }
