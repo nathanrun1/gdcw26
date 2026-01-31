@@ -9,6 +9,12 @@ namespace Managers
     {
         protected void Start()
         {
+            OnLevelLoaded();
+            SceneManager.sceneLoaded += (_, _) => OnLevelLoaded();
+        }
+
+        private static void OnLevelLoaded()
+        {
             InputManager.Instance.playerInput.Player.RefreshLevel.performed += OnInputRestartLevel;
         }
 
