@@ -6,19 +6,34 @@ using Utilities.Types;
 
 namespace Enemy
 {
+    public enum DetectionMode
+    {
+        Cone,
+        Rectangular
+    }
     public class EnemyBehaviour : MonoBehaviour
     {
         [Header("References")]
         [SerializeField] private Rigidbody2D _rigidbody2D;
         [SerializeField] private Collider2D _collider2D;
         [SerializeField] private SpriteRenderer _spriteRenderer;
+        
         [Header("Config")]
         [SerializeField] private MaskColor _maskColor;
         [SerializeField] private MonitorDirection _monitorDirection;
+        [SerializeField] private DetectionMode _detectionMode = DetectionMode.Cone;
+        
+        [Header("Cone Detection")]
         [SerializeField] private float _monitorFovDegrees;
+
+        [Header("Rectangular Detection")] 
+        [SerializeField] private float _detectionWidth = 2f;
+        [SerializeField] private float _detectionDistance = 20f;
+        
+        [Header("Movement")]
         [SerializeField] private float _walkSpeed = 10;  // Movement speed in units/s
         [SerializeField] private float _turnLimit = -1f; // Max turning speed in degrees/s
-
+        
         private bool _isEngaged = true;
         private Vector2 _curMovementDirection;
 
@@ -76,6 +91,17 @@ namespace Enemy
         private bool TryDetectPlayer()
         {
             if (!_isEngaged) return false;
+
+            return _detectionMode switch
+            {
+                DetectionMode.Cone => TryDetectPlayerCone(),
+                DetectionMode.Rectangular => TryDetectPlayerRectangular(),
+                _ => false
+            };
+        }
+
+        private bool TryDetectPlayerCone()
+        {
             Vector2 playerDir = LevelManager.Instance.playerPosition - (Vector2)transform.position;
             
             float angleToPlayer =
@@ -83,6 +109,28 @@ namespace Enemy
             if (angleToPlayer > _monitorFovDegrees / 2f) return false;  // Not within FOV
             RaycastHit2D hit = Physics2D.Raycast(transform.position, playerDir.normalized, playerDir.magnitude * 2f,
                 (int)CollisionAssistant.VisibleToEnemy);
+            return hit && hit.collider.gameObject == LevelManager.Instance.playerObject;
+        }
+
+        private bool TryDetectPlayerRectangular()
+        {
+            Vector2 playerPos =  LevelManager.Instance.playerPosition;
+            Vector2 enemyPos = transform.position;
+            Vector2 toPlayer = playerPos - enemyPos;
+            Vector2 forward = _curMovementDirection;
+            
+            Vector2 right = new Vector2(forward.y, -forward.x);
+            
+            float forwardDist = Vector2.Dot(forward, toPlayer);
+            float lateralDist = Mathf.Abs(Vector2.Dot(right, toPlayer));
+            
+            if (forwardDist < 0) return false; // player behind
+            if (forwardDist > _detectionDistance) return false; // player outside range
+            if (lateralDist > _detectionWidth / 2f) return false; // player not in width
+
+            RaycastHit2D hit = Physics2D.Raycast(enemyPos, toPlayer.normalized, toPlayer.magnitude,
+                (int)CollisionAssistant.VisibleToEnemy);
+            
             return hit && hit.collider.gameObject == LevelManager.Instance.playerObject;
         }
 
