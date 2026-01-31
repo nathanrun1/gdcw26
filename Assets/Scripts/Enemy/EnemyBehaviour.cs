@@ -26,21 +26,25 @@ namespace Enemy
         {
             _spriteRenderer.color = _maskColor.GetColor();
             _curMovementDirection = _monitorDirection.ToVector2();
+            AlignWithDirection();
         }
 
         private void Start()
         {
-            MaskManager.Instance.onColorChange += OnMaskUpdate;
+            MaskManager.Instance.onMaskChange += OnMaskUpdate;
             SetEngaged(MaskManager.Instance.GetMaskColor() != _maskColor);
+        }
+
+        private void Update()
+        {
+            AlignWithDirection();
         }
 
         private void FixedUpdate()
         {
-            if (TryDetectPlayer())
-            {
-                TurnTowardPlayer();
-                Move();
-            }
+            if (!TryDetectPlayer()) return;
+            TurnTowardPlayer();
+            Move();
         }
         
         private void OnTriggerEnter2D(Collider2D other)
@@ -108,13 +112,20 @@ namespace Enemy
             float angleFrom = Mathf.Atan2(_curMovementDirection.y, _curMovementDirection.x);
             float angleTo = Mathf.Atan2(playerDir.y, playerDir.x);
             float deltaAngle = Mathf.DeltaAngle(angleFrom, angleTo);
-            Debug.Log($"Angle diff: {deltaAngle}");
             float frameTurnLimit = _turnLimit * Time.fixedDeltaTime;
-            Debug.Log($"Turn limit: {frameTurnLimit}");
             if (frameTurnLimit * Mathf.Deg2Rad < Mathf.Abs(deltaAngle)) deltaAngle = Mathf.Sign(deltaAngle) * frameTurnLimit;
         
-            Debug.Log($"Turning by {deltaAngle}");
             _curMovementDirection = _curMovementDirection.Rotate(deltaAngle);
+        }
+
+        /// <summary>
+        /// Aligns the enemy's rotation (visually) with the direction they're moving in/monitoring
+        /// </summary>
+        private void AlignWithDirection()
+        {
+            Vector3 curRot = transform.eulerAngles;
+            curRot.z = Mathf.Atan2(_curMovementDirection.y, _curMovementDirection.x) * Mathf.Rad2Deg + 90f;
+            transform.eulerAngles = curRot;
         }
     }
 }

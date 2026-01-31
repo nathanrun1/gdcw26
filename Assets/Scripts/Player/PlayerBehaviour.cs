@@ -1,3 +1,4 @@
+using System;
 using Managers;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -7,13 +8,15 @@ namespace Player
 {
     public class PlayerBehaviour : MonoBehaviour
     {
+        [Header("References")]
         [SerializeField] private Rigidbody2D _rigidbody2D;
+        [SerializeField] private SpriteRenderer _maskSpriteRenderer;
         [Header("Config")] [SerializeField] private float _walkSpeed;
 
         private void Start()
         {
-            InputManager.Instance.playerInput.Player.NumberKey.performed += OnNumberKey;
-            InputManager.Instance.playerInput.Player.DefaultMask.performed += OnInputDefaultMask;
+            MaskManager.Instance.onMaskChange += OnMaskChange;
+            OnMaskChange(MaskManager.Instance.GetMaskColor());
         }
 
         private void MovePlayer()
@@ -28,26 +31,10 @@ namespace Player
             MovePlayer();
         }
 
-        private void OnInputDefaultMask(InputAction.CallbackContext _)
+        private void OnMaskChange(MaskColor newColor)
         {
-            MaskManager.Instance.ChangeMaskColor(MaskColor.Default);
-        }
-
-        private void OnNumberKey(InputAction.CallbackContext ctx)
-        {
-            int number = (int)ctx.ReadValue<float>();
-            switch (number)
-            {
-                case 1:
-                    MaskManager.Instance.ChangeMaskColor(MaskColor.Red);
-                    break;
-                case 2:
-                    MaskManager.Instance.ChangeMaskColor(MaskColor.Blue);
-                    break;
-                case 3:
-                    MaskManager.Instance.ChangeMaskColor(MaskColor.Default);
-                    break;
-            }
+            _maskSpriteRenderer.enabled = newColor != MaskColor.Default;
+            _maskSpriteRenderer.color = newColor.GetColor();
         }
     }
 }
