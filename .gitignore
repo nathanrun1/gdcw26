@@ -102,3 +102,4 @@ InitTestScene*.unity*
 # MacOS
 **/.DS_Store
 
+.vscode
