@@ -1,9 +1,8 @@
-﻿using System;
-using Managers;
+﻿using Managers;
 using UnityEngine;
 using Utilities.Types;
 
-namespace Mask
+namespace Environment
 {
     public class MaskBehaviour : MonoBehaviour
     {

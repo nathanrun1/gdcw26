@@ -20,9 +20,13 @@ namespace Enemy
 
         private bool _isEngaged = true;
 
-        private void Start()
+        private void OnValidate()
         {
             _spriteRenderer.color = _maskColor.GetColor();
+        }
+
+        private void Start()
+        {
             MaskManager.Instance.onColorChange += OnMaskUpdate;
             SetEngaged(MaskManager.Instance.GetMaskColor() != _maskColor);
         }
