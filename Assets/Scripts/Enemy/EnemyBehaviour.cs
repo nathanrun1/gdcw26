@@ -1,4 +1,5 @@
 ﻿using System;
+using Managers;
 using UnityEngine;
 using Utilities.Types;
 
@@ -16,6 +17,7 @@ namespace Enemy
         private void Awake()
         {
             _spriteRenderer.color = _maskColor.GetRGB();
+            MaskManager.Instance.OnColorChange += OnMaskUpdate;
         }
 
         /// <summary>
@@ -23,13 +25,18 @@ namespace Enemy
         /// </summary>
         private void OnMaskUpdate(MaskColor newColor)
         {
-            if (_maskColor == newColor) return;
+            SetEngaged(_maskColor != newColor);
         }
 
         private void SetEngaged(bool engaged)
         {
             _spriteRenderer.enabled = engaged;
             _collider2D.enabled = engaged;
+        }
+
+        private void OnTriggerEnter2D(Collider2D other)
+        {
+            Debug.Log("Player collision!");
         }
     }
 }
