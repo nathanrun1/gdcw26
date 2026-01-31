@@ -11,13 +11,18 @@ namespace Player
           [Header("Config")]
           [SerializeField] private float _walkSpeed;
 
-          private void MovePlayer()
+        private void Start()
+        {
+            InputManager.Instance.playerInput.Player.NumberKey.performed += OnNumberKey;
+            InputManager.Instance.playerInput.Player.DefaultMask.performed += OnInputDefaultMask;
+        }
+
+        private void MovePlayer()
           {
                var rawInput = InputManager.Instance.playerInput.Player.Move.ReadValue<Vector2>();
                Vector2 movementVector = rawInput.magnitude > 0.95f ? rawInput : Vector2.zero;
                _rigidbody2D.MovePosition(_rigidbody2D.position + movementVector * (_walkSpeed * Time.fixedDeltaTime));
 
-               InputManager.Instance.playerInput.Player.NumberKey.performed += OnNumberKey;
           }
 
           private void FixedUpdate()
@@ -25,7 +30,12 @@ namespace Player
                MovePlayer();
           }
 
-          private void OnNumberKey(InputAction.CallbackContext ctx)
+        private void OnInputDefaultMask(InputAction.CallbackContext _)
+        {
+            MaskManager.Instance.ChangeMaskColor(MaskColor.Default);
+        }
+
+        private void OnNumberKey(InputAction.CallbackContext ctx)
           {
                int number = (int)ctx.ReadValue<float>();
                switch (number)

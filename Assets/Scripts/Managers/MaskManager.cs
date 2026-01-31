@@ -34,14 +34,20 @@ namespace Managers
         private void Start()
         {
             InputManager.Instance.playerInput.Player.Space.performed += OnInputSpace;
+            InputManager.Instance.playerInput.Player.DefaultMask.performed += OnInputDefaultMask;
         }
 
         private void OnInputSpace(InputAction.CallbackContext _)
         {
             DequeueMaskColor();
         }
-        
-        
+
+        private void OnInputDefaultMask(InputAction.CallbackContext _)
+        {
+            ChangeMaskColor(MaskColor.Default);
+        }
+
+
         /// <summary>
         /// Changes the global mask color to the given color
         /// </summary>
@@ -49,9 +55,13 @@ namespace Managers
         public void ChangeMaskColor(MaskColor newColor)
         {
             _curMask = newColor;
-            _mainCamera.backgroundColor = Color.Lerp(newColor.GetColor(), Color.white, 0.5f);
+            if (_mainCamera != null)
+            {
+                _mainCamera.backgroundColor = Color.Lerp(newColor.GetColor(), Color.white, 0.5f);
+            }
+
             onColorChange?.Invoke(newColor);
-            Debug.Log($"New color: {newColor}");
+            //Debug.Log($"New color: {newColor}");
         }
 
         /// <summary>
