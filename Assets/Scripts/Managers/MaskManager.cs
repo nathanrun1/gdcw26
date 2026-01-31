@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using Utilities;
 using Utilities.Types;
 
@@ -16,7 +17,7 @@ namespace Managers
         
         private MaskColor _curMask = MaskColor.Default;
 
-        public event Action<MaskColor> OnColorChange;
+        public event Action<MaskColor> onColorChange;
 
         /// <summary>
         /// Changes the global mask color to the given color
@@ -26,7 +27,7 @@ namespace Managers
         {
             _curMask = newColor;
             _mainCamera.backgroundColor = Color.Lerp(newColor.GetRGB(), Color.white, 0.5f);
-            OnColorChange?.Invoke(newColor);
+            onColorChange?.Invoke(newColor);
             Debug.Log($"New color: {newColor}");
         }
 

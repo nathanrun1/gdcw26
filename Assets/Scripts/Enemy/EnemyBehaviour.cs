@@ -14,10 +14,10 @@ namespace Enemy
         [Header("Config")]
         [SerializeField] private MaskColor _maskColor;
 
-        private void Awake()
+        private void Start()
         {
             _spriteRenderer.color = _maskColor.GetRGB();
-            MaskManager.Instance.OnColorChange += OnMaskUpdate;
+            MaskManager.Instance.onColorChange += OnMaskUpdate;
         }
 
         /// <summary>

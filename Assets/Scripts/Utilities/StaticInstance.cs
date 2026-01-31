@@ -25,11 +25,19 @@ namespace Utilities
 
     public abstract class Singleton<T> : StaticInstance<T> where T : MonoBehaviour
     {
+        /// <summary>
+        /// Whether another instance already exists. If this is set to true, it means that the associated
+        /// gameObject is either already or about to be destroyed.
+        /// </summary>
+        protected bool _otherInstanceExists = false;
+        
         protected override void Awake()
         {
+            Debug.Log("hello");
             if (Instance != null)
             {
                 Destroy(gameObject);
+                _otherInstanceExists = true;
                 return;
             }
 

@@ -103,6 +103,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "RefreshLevel",
+                    "type": "Button",
+                    "id": "4ec8e393-0796-4a8a-8e08-fa093362d4ac",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -543,6 +552,17 @@
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
                     "action": "UIInteract1",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5b80c0af-585b-4203-a21e-eff59612cabc",
+                    "path": "<Keyboard>/r",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "RefreshLevel",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

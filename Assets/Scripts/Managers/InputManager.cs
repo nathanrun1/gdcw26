@@ -10,6 +10,7 @@ namespace Managers
         protected override void Awake()
         {
             base.Awake();
+            if (_otherInstanceExists) return;
             playerInput = new PlayerInput();
             playerInput.Player.Enable();
             playerInput.UI.Enable();
