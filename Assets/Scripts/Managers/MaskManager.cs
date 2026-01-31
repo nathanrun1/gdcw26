@@ -37,6 +37,12 @@ namespace Managers
             InputManager.Instance.playerInput.Player.DefaultMask.performed += OnInputDefaultMask;
         }
 
+        private void OnDestroy()
+        {
+            onMaskEnqueue = null;
+            onMaskDequeue = null;
+        }
+
         private void OnInputSpace(InputAction.CallbackContext _)
         {
             DequeueMaskColor();
