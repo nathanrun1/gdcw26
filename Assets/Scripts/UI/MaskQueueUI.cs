@@ -19,7 +19,7 @@ namespace UI
             MaskManager.Instance.onMaskEnqueue += OnMaskEnqueue;
             MaskManager.Instance.onMaskDequeue += OnMaskDequeue;
         }
-
+        
         private void OnMaskEnqueue(MaskColor maskColor)
         {
             Image newMask = Instantiate(_maskPrefab, transform);

@@ -16,13 +16,16 @@ namespace Enemy
         [SerializeField] private MaskColor _maskColor;
         [SerializeField] private MonitorDirection _monitorDirection;
         [SerializeField] private float _monitorFovDegrees;
-        [SerializeField] private float _walkSpeed = 10;
+        [SerializeField] private float _walkSpeed = 10;  // Movement speed in units/s
+        [SerializeField] private float _turnLimit = -1f; // Max turning speed in degrees/s
 
         private bool _isEngaged = true;
+        private Vector2 _curMovementDirection;
 
         private void OnValidate()
         {
             _spriteRenderer.color = _maskColor.GetColor();
+            _curMovementDirection = _monitorDirection.ToVector2();
         }
 
         private void Start()
@@ -35,7 +38,8 @@ namespace Enemy
         {
             if (TryDetectPlayer())
             {
-                MoveToPlayer();
+                TurnTowardPlayer();
+                Move();
             }
         }
         
@@ -77,16 +81,43 @@ namespace Enemy
             float angleToPlayer =
                 Mathf.Acos(Mathf.Clamp01(Vector2.Dot(playerDir.normalized, _monitorDirection.ToVector2()))) * Mathf.Rad2Deg;
             if (angleToPlayer > _monitorFovDegrees / 2f) return false;  // Not within FOV
-            Debug.Log($" {angleToPlayer} within angle");
             RaycastHit2D hit = Physics2D.Raycast(transform.position, playerDir.normalized, playerDir.magnitude * 2f,
                 (int)CollisionAssistant.VisibleToEnemy);
             return hit && hit.collider.gameObject == LevelManager.Instance.playerObject;
         }
 
-        private void MoveToPlayer()
+        private void Move()
         {
-            Vector2 playerDir = LevelManager.Instance.playerPosition - (Vector2)transform.position;
-            _rigidbody2D.MovePosition(_rigidbody2D.position + playerDir.normalized * (_walkSpeed * Time.fixedDeltaTime));
+            _rigidbody2D.MovePosition(_rigidbody2D.position + _curMovementDirection * (_walkSpeed * Time.fixedDeltaTime));
+        }
+
+        /// <summary>
+        /// Changes the current movement direction as much as possible toward the player direction, based on
+        /// turning speed limit
+        /// </summary>
+        private void TurnTowardPlayer()
+        {
+            Vector2 playerDir = (LevelManager.Instance.playerPosition - (Vector2)transform.position).normalized;
+            if (_turnLimit < 0f)
+            {
+                // No turn limit, set movement direction directly to player direction
+                _curMovementDirection = playerDir;
+                return;
+            }
+
+            float angleFrom = Mathf.Atan2(_curMovementDirection.y, _curMovementDirection.x);
+            float angleTo = Mathf.Atan2(playerDir.y, playerDir.x);
+            float deltaAngle = Mathf.DeltaAngle(angleFrom, angleTo);
+            Debug.Log($"Angle diff: {deltaAngle}");
+            float frameTurnLimit = _turnLimit * Time.fixedDeltaTime;
+            Debug.Log($"Turn limit: {frameTurnLimit}");
+            if (frameTurnLimit * Mathf.Deg2Rad < Mathf.Abs(deltaAngle)) deltaAngle = Mathf.Sign(deltaAngle) * frameTurnLimit;
+        
+            Debug.Log($"Turning by {deltaAngle}");
+            _curMovementDirection = _curMovementDirection.Rotate(deltaAngle);
         }
     }
 }
+
+// Have some desired direction, and some current direction
+// Rotate by minimum of angle to desired direction and turn limit * deltatime

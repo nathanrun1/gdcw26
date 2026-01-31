@@ -33,7 +33,6 @@ namespace Utilities
         
         protected override void Awake()
         {
-            Debug.Log("hello");
             if (Instance != null)
             {
                 Destroy(gameObject);

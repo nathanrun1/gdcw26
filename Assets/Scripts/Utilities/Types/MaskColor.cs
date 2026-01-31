@@ -7,7 +7,8 @@ namespace Utilities.Types
     {
         Default,
         Red,
-        Blue
+        Blue,
+        Green
     }
     
     public static class MaskColorExtensions
@@ -16,7 +17,8 @@ namespace Utilities.Types
         {
             { MaskColor.Default , Color.gray},
             { MaskColor.Red, Color.red },
-            { MaskColor.Blue, Color.blue }
+            { MaskColor.Blue, Color.blue },
+            { MaskColor.Green, Color.green }
         };
         
         /// <summary>
