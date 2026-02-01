@@ -1491,7 +1491,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 375655485946406974, guid: 4a1025e8347348349950e5d44d97117a, type: 3}
       propertyPath: m_Name
-      value: Enemy (1)
+      value: Red charger (bottom)
       objectReference: {fileID: 0}
     - target: {fileID: 3541065842986801479, guid: 4a1025e8347348349950e5d44d97117a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2736,7 +2736,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 375655485946406974, guid: 4a1025e8347348349950e5d44d97117a, type: 3}
       propertyPath: m_Name
-      value: Green charger (obstacle)
+      value: Green charger (bottom)
       objectReference: {fileID: 0}
     - target: {fileID: 3541065842986801479, guid: 4a1025e8347348349950e5d44d97117a, type: 3}
       propertyPath: m_LocalScale.y
@@ -3066,7 +3066,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 375655485946406974, guid: 4a1025e8347348349950e5d44d97117a, type: 3}
       propertyPath: m_Name
-      value: Enemy
+      value: Red charger (top)
       objectReference: {fileID: 0}
     - target: {fileID: 3541065842986801479, guid: 4a1025e8347348349950e5d44d97117a, type: 3}
       propertyPath: m_LocalPosition.x
