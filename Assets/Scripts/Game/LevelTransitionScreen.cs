@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
@@ -16,6 +17,7 @@ namespace Game
 
         private void Start()
         {
+            GetComponent<Image>().enabled = true;
             if (PlayerPrefs.GetInt("ShowLevelTransition", 0) == 1)
             {
                 PlayerPrefs.SetInt("ShowLevelTransition", 0);
