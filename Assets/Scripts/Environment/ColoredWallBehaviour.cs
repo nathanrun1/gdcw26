@@ -14,7 +14,7 @@ namespace Environment
 
         private void Start()
         {
-            MaskManager.Instance.onColorChange += (newMaskColor) => SetEngaged(newMaskColor != _maskColor);
+            MaskManager.Instance.onMaskChange += (newMaskColor) => SetEngaged(newMaskColor != _maskColor);
             SetEngaged(MaskManager.Instance.GetMaskColor() != _maskColor);
         }
         
@@ -23,12 +23,6 @@ namespace Environment
             _spriteRenderer.color = Color.Lerp(_maskColor.GetColor(), Color.gray,0.7f);
         }
 
-        private void OnTriggerEnter2D(Collider2D other)
-        {
-            MaskManager.Instance.QueueMaskColor(_maskColor);
-            Destroy(gameObject);
-        }
-        
         /// <summary>
         /// Sets whether the wall is "engaged". That is, whether hitbox and sprite are enabled
         /// </summary>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Utilities;
@@ -21,7 +22,7 @@ namespace Managers
         /// <summary>
         /// Invoked when the mask color changes
         /// </summary>
-        public event Action<MaskColor> onColorChange;
+        public event Action<MaskColor> onMaskChange;
         /// <summary>
         /// Invoked when mask color enqueued to mask queue
         /// </summary>
@@ -35,6 +36,7 @@ namespace Managers
         {
             InputManager.Instance.playerInput.Player.Space.performed += OnInputSpace;
             InputManager.Instance.playerInput.Player.DefaultMask.performed += OnInputDefaultMask;
+            InputManager.Instance.playerInput.Player.NumberKey.performed += OnInputNumberKey;
         }
 
         private void OnDestroy()
@@ -52,6 +54,21 @@ namespace Managers
         {
             ChangeMaskColor(MaskColor.Default);
         }
+        
+        private void OnInputNumberKey(InputAction.CallbackContext ctx)
+        {
+            // For debug purposes
+            int number = (int)ctx.ReadValue<float>();
+            MaskColor maskColor = number switch
+            {
+                1 => MaskColor.Default,
+                2 => MaskColor.Red,
+                3 => MaskColor.Green,
+                4 => MaskColor.Blue,
+                _ => _curMask
+            };
+            ChangeMaskColor(maskColor);
+        }
 
 
         /// <summary>
@@ -60,14 +77,15 @@ namespace Managers
         /// <param name="newColor"></param>
         public void ChangeMaskColor(MaskColor newColor)
         {
+            if (newColor == _curMask) return;
+            
             _curMask = newColor;
             if (_mainCamera != null)
             {
                 _mainCamera.backgroundColor = Color.Lerp(newColor.GetColor(), Color.white, 0.5f);
             }
 
-            onColorChange?.Invoke(newColor);
-            //Debug.Log($"New color: {newColor}");
+            onMaskChange?.Invoke(newColor);
         }
 
         /// <summary>
