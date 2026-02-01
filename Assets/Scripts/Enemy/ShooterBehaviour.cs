@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Game;
 using Managers;
 using UnityEngine;
@@ -57,7 +57,11 @@ namespace Enemy
                     continue;
                 }
 
-                if (hit.collider.gameObject == LevelManager.Instance.playerObject) GameManager.PlayerLoss();
+                if (hit.collider.gameObject == LevelManager.Instance.playerObject)
+                {
+                    GameManager.PlayerLoss();
+                    AudioManager.Instance.PlayEnemyShoot();
+                }
 
                 firstHit = hit;
                 break;

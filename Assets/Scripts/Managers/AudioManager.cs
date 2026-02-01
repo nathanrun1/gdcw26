@@ -17,7 +17,8 @@ namespace Managers
         [SerializeField] private AudioClip _playerDeath;
         [SerializeField] private AudioClip _levelComplete;
         [SerializeField] private AudioClip _maskPickup;
-        [SerializeField] private AudioClip _defaultMask;
+        [SerializeField] private AudioClip _enemyAlert;
+        [SerializeField] private AudioClip _enemyShoot;
 
         protected override void Awake()
         {
@@ -42,6 +43,7 @@ namespace Managers
         public void PlayPlayerDeath() => PlaySfx(_playerDeath);
         public void PlayLevelComplete() => PlaySfx(_levelComplete);
         public void PlayMaskPickup() => PlaySfx(_maskPickup);
-        public void PlayDefaultMask() => PlaySfx(_defaultMask);
+        public void PlayEnemyAlert() => PlaySfx(_enemyAlert);
+        public void PlayEnemyShoot() => PlaySfx(_enemyShoot);
     }
 }

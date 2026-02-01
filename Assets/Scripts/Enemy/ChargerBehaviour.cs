@@ -35,7 +35,8 @@ namespace Enemy
         
         private Vector2 _curMovementDirection;
         private bool _chargeStarted = false;
-
+        private bool _alertPlayed = false;
+        
         protected override void OnValidate()
         {
             base.OnValidate();
@@ -165,6 +166,7 @@ namespace Enemy
         /// </summary>
         private void AlertFx()
         {
+            AudioManager.Instance.PlayEnemyAlert();
             StartCoroutine(AlertFxCR());
         }
 
