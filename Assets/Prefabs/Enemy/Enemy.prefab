@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2896956077130579000}
   - component: {fileID: 7980491977378804231}
   m_Layer: 3
-  m_Name: LeftEye
+  m_Name: RightEye
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -139,6 +139,9 @@ MonoBehaviour:
   _rigidbody2D: {fileID: 6782855727445660858}
   _collider2D: {fileID: 3840487601791853776}
   _spriteRenderer: {fileID: 4664986205227781837}
+  _subSpriteRenderers:
+  - {fileID: 7980491977378804231}
+  - {fileID: 3433210564554343858}
   _maskColor: 0
   _monitorDirection: 0
   _detectionMode: 0
@@ -276,7 +279,7 @@ GameObject:
   - component: {fileID: 5373437040684302698}
   - component: {fileID: 3433210564554343858}
   m_Layer: 3
-  m_Name: LeftEye (1)
+  m_Name: LeftEye
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

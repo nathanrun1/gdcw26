@@ -17,6 +17,7 @@ namespace Enemy
         [SerializeField] private Rigidbody2D _rigidbody2D;
         [SerializeField] private Collider2D _collider2D;
         [SerializeField] private SpriteRenderer _spriteRenderer;
+        [SerializeField] private SpriteRenderer[] _subSpriteRenderers;
         
         [Header("Config")]
         [SerializeField] private MaskColor _maskColor;
@@ -86,6 +87,10 @@ namespace Enemy
             _spriteRenderer.enabled = engaged;
             _collider2D.enabled = engaged;
             _isEngaged = engaged;
+            foreach (SpriteRenderer sr in _subSpriteRenderers)
+            {
+                sr.enabled = engaged;
+            }
         }
 
         /// <summary>
