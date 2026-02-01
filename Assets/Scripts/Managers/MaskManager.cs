@@ -110,11 +110,16 @@ namespace Managers
         }
 
         /// <summary>
-        /// Changes the mask color to the color at the top of the queue, if any
+        /// Changes the mask color to the color at the top of the queue, if any, otherwise changes mask color
+        /// to default
         /// </summary>
         public void DequeueMaskColor()
         {
-            if (!_maskQueue.TryDequeue(out MaskColor newColor)) return;
+            if (!_maskQueue.TryDequeue(out MaskColor newColor))
+            {
+                ChangeMaskColor(MaskColor.Default);
+                return;
+            }
             onMaskDequeue?.Invoke();
             ChangeMaskColor(newColor);
         }
