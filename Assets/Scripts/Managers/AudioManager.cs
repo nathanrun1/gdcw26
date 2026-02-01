@@ -3,7 +3,7 @@ using Utilities;
 
 namespace Managers
 {
-    public class AudioManager : Singleton<AudioManager>
+    public class AudioManager : PersistentSingleton<AudioManager>
     {
         [Header("Audio Sources")]
         [SerializeField] private AudioSource _musicSource;
@@ -19,14 +19,11 @@ namespace Managers
         [SerializeField] private AudioClip _maskPickup;
         [SerializeField] private AudioClip _defaultMask;
 
-        private void Start()
+        protected override void Awake()
         {
-            Debug.Log("AudioManager Start called");
-            Debug.Log($"Music source: {_musicSource}, Clip: {_backgroundMusic}");
+            base.Awake();
+            if (_otherInstanceExists) return;
             PlayMusic(_backgroundMusic);
-            Debug.Log($"Music is playing: {_musicSource.isPlaying}");
-            Debug.Log($"Music volume: {_musicSource.volume}");
-            Debug.Log($"Music mute: {_musicSource.mute}");
         }
 
         private void PlayMusic(AudioClip clip)
