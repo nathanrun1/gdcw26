@@ -32,6 +32,7 @@ namespace Enemy
         /// </summary>
         private void TryHitPlayer()
         {
+            if (!_isEngaged) return;
             Vector2 shotOrigin = _shotOrigin.position;
             Vector2 shotDir = _monitorDirection.ToVector2();
             
@@ -63,6 +64,12 @@ namespace Enemy
             Vector3 curRot = transform.eulerAngles;
             curRot.z = Mathf.Atan2(monitorDirActual.y, monitorDirActual.x) * Mathf.Rad2Deg + 90f;
             transform.eulerAngles = curRot;
+        }
+
+        protected override void SetEngaged(bool engaged)
+        {
+            base.SetEngaged(engaged);
+            _lineRenderer.enabled = engaged;
         }
     }
 }

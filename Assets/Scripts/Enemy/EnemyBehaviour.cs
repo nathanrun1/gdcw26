@@ -50,7 +50,7 @@ namespace Enemy
         /// Sets whether the enemy is "engaged". That is, whether hitbox, sprite, and aggro is enabled.
         /// </summary>
         /// <param name="engaged"></param>
-        private void SetEngaged(bool engaged)
+        protected virtual void SetEngaged(bool engaged)
         {
             _spriteRenderer.enabled = engaged;
             _collider2D.enabled = engaged;
