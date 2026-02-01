@@ -1,4 +1,5 @@
 ﻿using System;
+using Game;
 using Managers;
 using UnityEngine;
 using Utilities;
@@ -42,12 +43,33 @@ namespace Enemy
             if (!_isEngaged) return;
             Vector2 shotOrigin = _shotOrigin.position;
             Vector2 shotDir = _monitorDirection.ToVector2();
-            
-            RaycastHit2D hit = Physics2D.Raycast(shotOrigin, shotDir, 
-                float.MaxValue, (int)CollisionAssistant.VisibleToEnemy);
-            if (hit && hit.collider.gameObject == LevelManager.Instance.playerObject) GameManager.PlayerLoss();
 
-            DisplayShotLine(shotOrigin, shotDir, hit);
+            RaycastHit2D[] hits = Physics2D.RaycastAll(shotOrigin, shotDir,
+                float.MaxValue, (int)(CollisionAssistant.VisibleToEnemy | CollisionLayer.Moneybag));
+
+            bool hitMoneyBag = false;
+            bool hitFirst = false;
+            RaycastHit2D firstHit = default;
+            foreach (RaycastHit2D hit in hits)
+            {
+                if (hit.collider.gameObject.GetComponent<LevelExit>())
+                {
+                    hitMoneyBag = true;
+                    continue;
+                }
+
+                if (hit.collider.gameObject == LevelManager.Instance.playerObject) GameManager.PlayerLoss();
+
+                if (hitFirst) continue;
+                hitFirst = true;
+                firstHit = hit;
+            }
+
+            if (hitMoneyBag) LevelManager.Instance.shootersHittingMoneybag.Add(this);
+            else LevelManager.Instance.shootersHittingMoneybag.Remove(this);
+            Debug.Log(LevelManager.Instance.shootersHittingMoneybag.Count);
+            
+            DisplayShotLine(shotOrigin, shotDir, firstHit!);
         }
 
         /// <summary>

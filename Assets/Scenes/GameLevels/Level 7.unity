@@ -1423,6 +1423,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Moneybag
       objectReference: {fileID: 0}
+    - target: {fileID: 6522940484686044160, guid: ef6e5072640e549c0bad4af6e6b6861b, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 8061639592962928091, guid: ef6e5072640e549c0bad4af6e6b6861b, type: 3}
       propertyPath: m_Radius
       value: 0.35920826

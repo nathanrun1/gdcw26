@@ -12,7 +12,8 @@ namespace Utilities
         Water = 1 << 4,
         UI = 1 << 5,
         Player = 1 << 6,
-        Obstacle = 1 << 7
+        Obstacle = 1 << 7,
+        Moneybag = 1 << 8
     }
 
     public static class CollisionAssistant
