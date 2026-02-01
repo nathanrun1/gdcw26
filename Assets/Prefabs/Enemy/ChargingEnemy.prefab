@@ -30,7 +30,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3541065842986801479, guid: 4a1025e8347348349950e5d44d97117a, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: -0.00000004371139
       objectReference: {fileID: 0}
     - target: {fileID: 3541065842986801479, guid: 4a1025e8347348349950e5d44d97117a, type: 3}
       propertyPath: m_LocalRotation.x
@@ -42,7 +42,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3541065842986801479, guid: 4a1025e8347348349950e5d44d97117a, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.000000031023493
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3541065842986801479, guid: 4a1025e8347348349950e5d44d97117a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -62,15 +62,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4664986205227781837, guid: 4a1025e8347348349950e5d44d97117a, type: 3}
       propertyPath: m_Color.b
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4664986205227781837, guid: 4a1025e8347348349950e5d44d97117a, type: 3}
       propertyPath: m_Color.g
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4664986205227781837, guid: 4a1025e8347348349950e5d44d97117a, type: 3}
       propertyPath: m_Color.r
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 8907876073699908452, guid: 4a1025e8347348349950e5d44d97117a, type: 3}
       propertyPath: _maskColor
@@ -96,8 +96,68 @@ PrefabInstance:
       propertyPath: _monitorFovDegrees
       value: 150
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8907876073699908452, guid: 4a1025e8347348349950e5d44d97117a, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 375655485946406974, guid: 4a1025e8347348349950e5d44d97117a, type: 3}
+      insertIndex: 2
+      addedObject: {fileID: 3037697904068878467}
   m_SourcePrefab: {fileID: 100100000, guid: 4a1025e8347348349950e5d44d97117a, type: 3}
+--- !u!212 &2174733519269514337 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 7980491977378804231, guid: 4a1025e8347348349950e5d44d97117a, type: 3}
+  m_PrefabInstance: {fileID: 8137533621439659622}
+  m_PrefabAsset: {fileID: 0}
+--- !u!50 &3373153162648759004 stripped
+Rigidbody2D:
+  m_CorrespondingSourceObject: {fileID: 6782855727445660858, guid: 4a1025e8347348349950e5d44d97117a, type: 3}
+  m_PrefabInstance: {fileID: 8137533621439659622}
+  m_PrefabAsset: {fileID: 0}
+--- !u!212 &3482144022687281323 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 4664986205227781837, guid: 4a1025e8347348349950e5d44d97117a, type: 3}
+  m_PrefabInstance: {fileID: 8137533621439659622}
+  m_PrefabAsset: {fileID: 0}
+--- !u!58 &5017701124865333942 stripped
+CircleCollider2D:
+  m_CorrespondingSourceObject: {fileID: 3840487601791853776, guid: 4a1025e8347348349950e5d44d97117a, type: 3}
+  m_PrefabInstance: {fileID: 8137533621439659622}
+  m_PrefabAsset: {fileID: 0}
+--- !u!212 &6866693551503457236 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 3433210564554343858, guid: 4a1025e8347348349950e5d44d97117a, type: 3}
+  m_PrefabInstance: {fileID: 8137533621439659622}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &8491760411018155608 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 375655485946406974, guid: 4a1025e8347348349950e5d44d97117a, type: 3}
+  m_PrefabInstance: {fileID: 8137533621439659622}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3037697904068878467
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8491760411018155608}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44b9cd8f97c74bf997425b636e4742b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _rigidbody2D: {fileID: 3373153162648759004}
+  _collider2D: {fileID: 5017701124865333942}
+  _spriteRenderer: {fileID: 3482144022687281323}
+  _subSpriteRenderers:
+  - {fileID: 2174733519269514337}
+  - {fileID: 6866693551503457236}
+  _maskColor: 0
+  _monitorDirection: 0
+  _detectionMode: 1
+  _monitorFovDegrees: 0
+  _detectionWidth: 2
+  _detectionDistance: 100
+  _walkSpeed: 5
+  _turnLimit: 0
