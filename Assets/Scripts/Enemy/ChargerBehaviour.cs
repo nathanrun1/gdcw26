@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using DG.Tweening;
 using Managers;
 using UnityEngine;
 using Utilities;
@@ -13,6 +15,9 @@ namespace Enemy
     }
     public class ChargerBehaviour : EnemyBehaviour
     {  
+        [Header("Charger References")]
+        [SerializeField] private SpriteRenderer _alertSprite;
+        
         [Header("Charger Config")]
         [SerializeField] private DetectionMode _detectionMode;
         
@@ -36,12 +41,16 @@ namespace Enemy
             base.OnValidate();
             _curMovementDirection = _monitorDirection.ToVector2();
             AlignWithDirection();
+            _alertSprite.enabled = false;
+            _alertSprite.color = _maskColor.GetColor();
         }
 
         private void Awake()
         {
             _curMovementDirection = _monitorDirection.ToVector2();
             AlignWithDirection();
+            _alertSprite.enabled = false;
+            _alertSprite.color = _maskColor.GetColor();
         }
 
         private void Update()
@@ -53,6 +62,7 @@ namespace Enemy
         {
             if (!_isEngaged) return;
             if (!TryDetectPlayer() && !(_permaCharge && _chargeStarted)) return;
+            if (!_chargeStarted) AlertFx();
             _chargeStarted = true;
             TurnTowardPlayer();
             Move();
@@ -148,6 +158,27 @@ namespace Enemy
             Vector3 curRot = transform.eulerAngles;
             curRot.z = Mathf.Atan2(_curMovementDirection.y, _curMovementDirection.x) * Mathf.Rad2Deg + 90f;
             transform.eulerAngles = curRot;
+        }
+
+        /// <summary>
+        /// Alert effects
+        /// </summary>
+        private void AlertFx()
+        {
+            StartCoroutine(AlertFxCR());
+        }
+
+        private IEnumerator AlertFxCR()
+        {
+            float fxDuration = 0.2f;
+            
+            _alertSprite.enabled = true;
+            
+            _alertSprite.color = _maskColor.GetSoftColor();
+            _alertSprite.DOColor(Color.clear, fxDuration);
+            yield return new WaitForSeconds(0.2f);
+            
+            _alertSprite.enabled = false;
         }
     }
 }

@@ -48,7 +48,6 @@ namespace Enemy
                 float.MaxValue, (int)(CollisionAssistant.VisibleToEnemy | CollisionLayer.Moneybag));
 
             bool hitMoneyBag = false;
-            bool hitFirst = false;
             RaycastHit2D firstHit = default;
             foreach (RaycastHit2D hit in hits)
             {
@@ -60,16 +59,15 @@ namespace Enemy
 
                 if (hit.collider.gameObject == LevelManager.Instance.playerObject) GameManager.PlayerLoss();
 
-                if (hitFirst) continue;
-                hitFirst = true;
                 firstHit = hit;
+                break;
             }
 
             if (hitMoneyBag) LevelManager.Instance.shootersHittingMoneybag.Add(this);
             else LevelManager.Instance.shootersHittingMoneybag.Remove(this);
             Debug.Log(LevelManager.Instance.shootersHittingMoneybag.Count);
             
-            DisplayShotLine(shotOrigin, shotDir, firstHit!);
+            DisplayShotLine(shotOrigin, shotDir, firstHit);
         }
 
         /// <summary>
