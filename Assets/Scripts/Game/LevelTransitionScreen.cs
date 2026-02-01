@@ -20,6 +20,9 @@ namespace Game
             {
                 PlayerPrefs.SetInt("ShowLevelTransition", 0);
                 if (_background == null) _background = GetComponent<Image>();
+                Color bgColor = _background.color;
+                bgColor.a = 0.8f;  
+                _background.color = bgColor;
                 string sceneName = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
                 _levelText.text = sceneName;
                 _timer = _displayDuration;
