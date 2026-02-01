@@ -84,6 +84,8 @@ namespace Managers
             {
                 _mainCamera.backgroundColor = Color.Lerp(newColor.GetColor(), Color.white, 0.5f);
             }
+            
+            AudioManager.Instance.PlayMaskChange();
 
             onMaskChange?.Invoke(newColor);
         }

@@ -36,6 +36,7 @@ namespace Managers
         /// </summary>
         public static void PlayerLoss()
         {
+            AudioManager.Instance.PlayPlayerDeath();
             RestartLevel();
         }
     }
