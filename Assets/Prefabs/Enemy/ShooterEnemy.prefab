@@ -269,6 +269,8 @@ MonoBehaviour:
   - {fileID: 332444597092980992}
   _maskColor: 0
   _monitorDirection: 0
+  _lineRenderer: {fileID: 3473494669951096638}
+  _shotOrigin: {fileID: 564640787286701737}
 --- !u!120 &3473494669951096638
 LineRenderer:
   serializedVersion: 2
@@ -316,7 +318,7 @@ LineRenderer:
   m_SortingOrder: 0
   m_Positions:
   - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 1}
+  - {x: 0, y: 0, z: 0}
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 1
