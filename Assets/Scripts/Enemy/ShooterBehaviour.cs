@@ -38,7 +38,11 @@ namespace Enemy
             
             RaycastHit2D hit = Physics2D.Raycast(shotOrigin, shotDir, 
                 float.MaxValue, (int)CollisionAssistant.VisibleToEnemy);
-            if (hit && hit.collider.gameObject == LevelManager.Instance.playerObject) GameManager.PlayerLoss();
+            if (hit && hit.collider.gameObject == LevelManager.Instance.playerObject)
+            {
+                GameManager.PlayerLoss();
+                AudioManager.Instance.PlayEnemyShoot();
+            }
 
             DisplayShotLine(shotOrigin, shotDir, hit);
         }
