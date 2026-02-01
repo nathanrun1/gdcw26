@@ -31,6 +31,10 @@ namespace Managers
         /// Invoked when mask color dequeued from mask queue
         /// </summary>
         public event Action onMaskDequeue;
+        /// <summary>
+        /// Invoked when the player has the last mask in their queue equiped
+        /// </summary>
+        public event Action onLastMask;
 
         private void Start()
         {
@@ -45,6 +49,7 @@ namespace Managers
         {
             onMaskEnqueue = null;
             onMaskDequeue = null;
+            onLastMask = null;
         }
 
         private void OnInputSpace(InputAction.CallbackContext _)
@@ -122,6 +127,12 @@ namespace Managers
                 ChangeMaskColor(MaskColor.Default);
                 return;
             }
+
+            if (_maskQueue.Count == 0)
+            {
+                onLastMask?.Invoke();
+            }
+
             onMaskDequeue?.Invoke();
             ChangeMaskColor(newColor);
         }
