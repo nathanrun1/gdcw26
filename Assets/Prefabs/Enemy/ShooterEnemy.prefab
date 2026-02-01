@@ -259,9 +259,9 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3541065842986801479, guid: 4a1025e8347348349950e5d44d97117a, type: 3}
   m_PrefabInstance: {fileID: 8137533621439659622}
   m_PrefabAsset: {fileID: 0}
---- !u!58 &5017701124865333942 stripped
-CircleCollider2D:
-  m_CorrespondingSourceObject: {fileID: 3840487601791853776, guid: 4a1025e8347348349950e5d44d97117a, type: 3}
+--- !u!61 &8462193771575525325 stripped
+BoxCollider2D:
+  m_CorrespondingSourceObject: {fileID: 396760765274341803, guid: 4a1025e8347348349950e5d44d97117a, type: 3}
   m_PrefabInstance: {fileID: 8137533621439659622}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &8491760411018155608 stripped
@@ -282,7 +282,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rigidbody2D: {fileID: 3373153162648759004}
-  _collider2D: {fileID: 5017701124865333942}
+  _collider2D: {fileID: 8462193771575525325}
   _spriteRenderer: {fileID: 3482144022687281323}
   _subSpriteRenderers:
   - {fileID: 2174733519269514337}

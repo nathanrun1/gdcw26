@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7805991834556300385}
   - component: {fileID: 8061639592962928091}
   - component: {fileID: 1944884990703618386}
-  m_Layer: 6
+  m_Layer: 2
   m_Name: Moneybag
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -123,8 +123,8 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_Radius: 0.5
+  m_Offset: {x: 0, y: -0.14329481}
+  m_Radius: 0.26339674
 --- !u!114 &1944884990703618386
 MonoBehaviour:
   m_ObjectHideFlags: 0
