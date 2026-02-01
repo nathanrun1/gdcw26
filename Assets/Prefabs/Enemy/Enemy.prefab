@@ -52,7 +52,10 @@ MonoBehaviour:
   _spriteRenderer: {fileID: 4664986205227781837}
   _maskColor: 0
   _monitorDirection: 0
+  _detectionMode: 0
   _monitorFovDegrees: 90
+  _detectionWidth: 2
+  _detectionDistance: 20
   _walkSpeed: 11
   _turnLimit: -1
 --- !u!212 &4664986205227781837

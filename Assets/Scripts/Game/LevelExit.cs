@@ -19,6 +19,7 @@ namespace Game
 
         private void LoadNextScene()
         {
+            PlayerPrefs.SetInt("ShowLevelTransition", 1);
             if (_nextSceneIndex >= 0)
             {
                 UnityEngine.SceneManagement.SceneManager.LoadScene(_nextSceneIndex);
