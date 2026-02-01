@@ -1225,6 +1225,67 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 9219639577289260350, guid: 8066ed96a7eccfd4cae9421a037057a5, type: 3}
   m_PrefabInstance: {fileID: 763922966}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &765810085
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1466263566824224599, guid: ef6e5072640e549c0bad4af6e6b6861b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -3.6189027
+      objectReference: {fileID: 0}
+    - target: {fileID: 1466263566824224599, guid: ef6e5072640e549c0bad4af6e6b6861b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.0563576
+      objectReference: {fileID: 0}
+    - target: {fileID: 1466263566824224599, guid: ef6e5072640e549c0bad4af6e6b6861b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1466263566824224599, guid: ef6e5072640e549c0bad4af6e6b6861b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1466263566824224599, guid: ef6e5072640e549c0bad4af6e6b6861b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1466263566824224599, guid: ef6e5072640e549c0bad4af6e6b6861b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1466263566824224599, guid: ef6e5072640e549c0bad4af6e6b6861b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1466263566824224599, guid: ef6e5072640e549c0bad4af6e6b6861b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1466263566824224599, guid: ef6e5072640e549c0bad4af6e6b6861b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1466263566824224599, guid: ef6e5072640e549c0bad4af6e6b6861b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1944884990703618386, guid: ef6e5072640e549c0bad4af6e6b6861b, type: 3}
+      propertyPath: _nextSceneName
+      value: Level 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6522940484686044160, guid: ef6e5072640e549c0bad4af6e6b6861b, type: 3}
+      propertyPath: m_Name
+      value: Moneybag
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ef6e5072640e549c0bad4af6e6b6861b, type: 3}
 --- !u!1001 &771408504
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3083,3 +3144,4 @@ SceneRoots:
   - {fileID: 712532892}
   - {fileID: 690823138}
   - {fileID: 2519701034304637268}
+  - {fileID: 765810085}
