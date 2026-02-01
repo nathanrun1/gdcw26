@@ -25,10 +25,13 @@ EditorBuildSettings:
     guid: d01fd32c198684bc485ea8a7fa57d124
   - enabled: 1
     path: Assets/Scenes/GameLevels/Level 6.unity
-    guid: 87a82763d8d774007a81d47a5ab662ca
-  - enabled: 1
+    guid: d65df9949c7bc96429da9fd5f77bd174
+  - enabled: 0
     path: Assets/Scenes/GameLevels/GameComplete.unity
     guid: 59dea526adde44513923ea3857093b9a
+  - enabled: 1
+    path: Assets/Scenes/GameLevels/Game Complete!.unity
+    guid: f44ba21e4471f6b4cbb5ccdbafed6e1b
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 0a949e0cea230914f8a561599ecdb385, type: 3}
   m_UseUCBPForAssetBundles: 0

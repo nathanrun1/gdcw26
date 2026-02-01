@@ -37,7 +37,13 @@ namespace Enemy
             _curMovementDirection = _monitorDirection.ToVector2();
             AlignWithDirection();
         }
-        
+
+        private void Awake()
+        {
+            _curMovementDirection = _monitorDirection.ToVector2();
+            AlignWithDirection();
+        }
+
         private void Update()
         {
             AlignWithDirection();

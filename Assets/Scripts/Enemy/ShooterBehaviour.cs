@@ -22,6 +22,13 @@ namespace Enemy
             _lineRenderer.endColor = _maskColor.GetColor();
         }
 
+        private void Awake()
+        {
+            AlignWithMonitorDirection();
+            _lineRenderer.startColor = _maskColor.GetColor();
+            _lineRenderer.endColor = _maskColor.GetColor();
+        }
+
         private void FixedUpdate()
         {
             TryHitPlayer();
