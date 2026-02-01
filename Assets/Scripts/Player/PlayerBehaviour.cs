@@ -24,15 +24,20 @@ namespace Player
             OnMaskChange(MaskManager.Instance.GetMaskColor());
         }
 
-        private void MovePlayer()
+        private void UpdateMovementVector()
         {
             var rawInput = InputManager.Instance.playerInput.Player.Move.ReadValue<Vector2>();
             _movementVector = rawInput.magnitude > 0.95f ? rawInput : Vector2.zero;
+        }
+
+        private void MovePlayer()
+        {
             _rigidbody2D.MovePosition(_rigidbody2D.position + _movementVector * (_walkSpeed * Time.fixedDeltaTime));
         }
 
         private void Update()
         {
+            UpdateMovementVector();
             AlignTowardMovement(Time.deltaTime);
         }
 
