@@ -57,20 +57,16 @@ namespace Player
             
             Vector3 curRot = transform.eulerAngles;
             curRot.z -= 90f;  // Sprite rotation offset
-            Debug.Log($"Cur angle: {curRot.z}");
             
             float angleFrom = curRot.z;
             float angleTo = Mathf.Atan2(_movementVector.y, _movementVector.x) * Mathf.Rad2Deg;
-            Debug.Log($"Target angle: {angleTo}");
             float deltaAngle = Mathf.DeltaAngle(angleFrom, angleTo);
-            Debug.Log($"Rotating by: {deltaAngle}");
             if (Mathf.Abs(deltaAngle) < _turnThreshold) return;
             float frameTurnLimit = _turnSpeedLimit * deltaTime;
             if (frameTurnLimit < Mathf.Abs(deltaAngle)) deltaAngle = Mathf.Sign(deltaAngle) * frameTurnLimit;
 
             curRot.z += deltaAngle;
             curRot.z += 90f;  // Undo sprite rotation offset
-            Debug.Log($"New rot {curRot.z}");
             transform.eulerAngles = curRot;
         }
     }
