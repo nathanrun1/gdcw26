@@ -445,6 +445,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1943443710}
+  - {fileID: 1328668413}
   - {fileID: 952828411}
   - {fileID: 917457118}
   - {fileID: 875644752}
@@ -454,7 +455,6 @@ Transform:
   - {fileID: 49286546}
   - {fileID: 797791691}
   - {fileID: 1853355231}
-  - {fileID: 1328668413}
   - {fileID: 1856413670}
   - {fileID: 1842760535}
   - {fileID: 2115651649}
@@ -1226,7 +1226,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7236149357843509176, guid: fc16c2c1d8f9507429972f8cf01b6f52, type: 3}
       propertyPath: m_Name
-      value: ColoredWall
+      value: Green wall
       objectReference: {fileID: 0}
     - target: {fileID: 9219639577289260350, guid: fc16c2c1d8f9507429972f8cf01b6f52, type: 3}
       propertyPath: m_LocalScale.x
