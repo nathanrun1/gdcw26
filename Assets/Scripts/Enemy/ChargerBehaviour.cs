@@ -26,8 +26,10 @@ namespace Enemy
         [Header("Movement")]
         [SerializeField] private float _walkSpeed = 10;  // Movement speed in units/s
         [SerializeField] private float _turnLimit = -1f; // Max turning speed in degrees/s
+        [SerializeField] private bool _permaCharge;  // If true, does not stop moving after it starts
         
         private Vector2 _curMovementDirection;
+        private bool _chargeStarted = false;
 
         protected override void OnValidate()
         {
@@ -43,7 +45,9 @@ namespace Enemy
         
         private void FixedUpdate()
         {
-            if (!TryDetectPlayer()) return;
+            if (!_isEngaged) return;
+            if (!TryDetectPlayer() && !(_permaCharge && _chargeStarted)) return;
+            _chargeStarted = true;
             TurnTowardPlayer();
             Move();
         }
@@ -54,8 +58,6 @@ namespace Enemy
         /// </summary>
         private bool TryDetectPlayer()
         {
-            if (!_isEngaged) return false;
-
             return _detectionMode switch
             {
                 DetectionMode.Cone => TryDetectPlayerCone(),
@@ -91,7 +93,7 @@ namespace Enemy
             if (forwardDist < 0) return false; // player behind
             if (forwardDist > _detectionDistance) return false; // player outside range
             if (lateralDist > _detectionWidth / 2f) return false; // player not in width
-
+            
             RaycastHit2D hit = Physics2D.Raycast(enemyPos, toPlayer.normalized, toPlayer.magnitude,
                 (int)CollisionAssistant.VisibleToEnemy);
             

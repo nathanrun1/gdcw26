@@ -31,12 +31,18 @@ namespace Enemy
             MaskManager.Instance.onMaskChange += OnMaskUpdate;
             SetEngaged(MaskManager.Instance.GetMaskColor() != _maskColor);
         }
-        
-        private void OnTriggerEnter2D(Collider2D other)
+
+        private void OnCollisionEnter2D(Collision2D other)
         {
             if (other.gameObject != LevelManager.Instance.playerObject) return;
             GameManager.PlayerLoss();
         }
+
+        // private void OnTriggerEnter2D(Collider2D other)
+        // {
+        //     if (other.gameObject != LevelManager.Instance.playerObject) return;
+        //     GameManager.PlayerLoss();
+        // }
 
         /// <summary>
         /// Invoked when global mask color is updated
