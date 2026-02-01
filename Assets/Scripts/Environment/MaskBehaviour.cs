@@ -19,6 +19,7 @@ namespace Environment
         private void OnTriggerEnter2D(Collider2D other)
         {
             MaskManager.Instance.QueueMaskColor(_maskColor);
+            AudioManager.Instance.PlayMaskPickup();
             Destroy(gameObject);
         }
     }

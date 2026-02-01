@@ -13,7 +13,7 @@ namespace Game
         private void OnTriggerEnter2D(Collider2D other)
         {
             if (other.gameObject != LevelManager.Instance.playerObject) return;
-            
+            AudioManager.Instance.PlayLevelComplete();
             LoadNextScene();
         }
 
