@@ -51,7 +51,13 @@ namespace Enemy
             TurnTowardPlayer();
             Move();
         }
-        
+
+        protected override void SetEngaged(bool engaged)
+        {
+            base.SetEngaged(engaged);
+            _chargeStarted = _chargeStarted && engaged;
+        }
+
         /// <summary>
         /// Attempts to detect the player. Will successfully detect if the player is within FOV and not behind
         /// an obstacle.
