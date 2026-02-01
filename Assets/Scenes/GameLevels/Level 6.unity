@@ -292,7 +292,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7236149357843509176, guid: fc16c2c1d8f9507429972f8cf01b6f52, type: 3}
       propertyPath: m_Name
-      value: TEMPFIX_Wall_Green
+      value: Wallgreens
       objectReference: {fileID: 0}
     - target: {fileID: 9219639577289260350, guid: fc16c2c1d8f9507429972f8cf01b6f52, type: 3}
       propertyPath: m_LocalScale.x

@@ -35,8 +35,10 @@ namespace Managers
         private void Start()
         {
             InputManager.Instance.playerInput.Player.Space.performed += OnInputSpace;
+            #if UNITY_EDITOR
             InputManager.Instance.playerInput.Player.DefaultMask.performed += OnInputDefaultMask;
             InputManager.Instance.playerInput.Player.NumberKey.performed += OnInputNumberKey;
+            #endif
         }
 
         private void OnDestroy()
