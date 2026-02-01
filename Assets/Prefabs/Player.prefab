@@ -169,6 +169,8 @@ MonoBehaviour:
   _rigidbody2D: {fileID: 74270510630735805}
   _maskSpriteRenderer: {fileID: 6887066494534312231}
   _walkSpeed: 10
+  _turnSpeedLimit: 420
+  _turnThreshold: 5
 --- !u!1 &6268611118092785968
 GameObject:
   m_ObjectHideFlags: 0
