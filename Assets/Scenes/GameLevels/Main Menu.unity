@@ -444,7 +444,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _firstLevelName: Level 1
-  _firstLevelIndex: 1
 --- !u!1 &635767469
 GameObject:
   m_ObjectHideFlags: 0

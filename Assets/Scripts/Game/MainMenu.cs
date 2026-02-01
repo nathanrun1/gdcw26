@@ -6,8 +6,7 @@ namespace Game
 {
     public class MainMenu : MonoBehaviour
     {
-        [SerializeField] private string _firstLevelName = "Level1";
-        [SerializeField] private int _firstLevelIndex = 1;
+        [SerializeField] private string _firstLevelName = "Level 1";
     
         private void Update()
         {
@@ -30,7 +29,7 @@ namespace Game
         private void StartGame()
         {
             PlayerPrefs.SetInt("ShowLevelTransition", 1);
-            SceneManager.LoadScene(_firstLevelIndex);
+            SceneManager.LoadScene(_firstLevelName);
         }
     }
 }
