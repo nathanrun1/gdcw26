@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Game;
 using Managers;
 using UnityEngine;
@@ -69,7 +69,15 @@ namespace Enemy
             else LevelManager.Instance.shootersHittingMoneybag.Remove(this);
             Debug.Log(LevelManager.Instance.shootersHittingMoneybag.Count);
             
-            DisplayShotLine(shotOrigin, shotDir, firstHit!);
+            RaycastHit2D hit = Physics2D.Raycast(shotOrigin, shotDir, 
+                float.MaxValue, (int)CollisionAssistant.VisibleToEnemy);
+            if (hit && hit.collider.gameObject == LevelManager.Instance.playerObject)
+            {
+                GameManager.PlayerLoss();
+                AudioManager.Instance.PlayEnemyShoot();
+            }
+
+            DisplayShotLine(shotOrigin, shotDir, hit);
         }
 
         /// <summary>

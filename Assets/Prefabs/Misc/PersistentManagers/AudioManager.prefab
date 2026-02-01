@@ -53,7 +53,8 @@ MonoBehaviour:
   _playerDeath: {fileID: 8300000, guid: 5413162453ef60b4da6c1328dc295241, type: 3}
   _levelComplete: {fileID: 8300000, guid: 455eaf9d9c47caf4e8269255f03aa8e8, type: 3}
   _maskPickup: {fileID: 8300000, guid: fe8063bb9eca01d499fcaa9003ca1f82, type: 3}
-  _defaultMask: {fileID: 8300000, guid: d7c09498258fbf6429643f2051dfe297, type: 3}
+  _enemyAlert: {fileID: 8300000, guid: ff53a14df47ccc84d8184e799fba1032, type: 3}
+  _enemyShoot: {fileID: 8300000, guid: 4fdf528995ddd0b4e9e281f3b25287a3, type: 3}
 --- !u!82 &2451141008231935844
 AudioSource:
   m_ObjectHideFlags: 0

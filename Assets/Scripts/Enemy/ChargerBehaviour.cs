@@ -30,7 +30,8 @@ namespace Enemy
         
         private Vector2 _curMovementDirection;
         private bool _chargeStarted = false;
-
+        private bool _alertPlayed = false;
+        
         protected override void OnValidate()
         {
             base.OnValidate();
@@ -52,7 +53,15 @@ namespace Enemy
         private void FixedUpdate()
         {
             if (!_isEngaged) return;
-            if (!TryDetectPlayer() && !(_permaCharge && _chargeStarted)) return;
+            bool playerDetected = TryDetectPlayer();
+            if (!playerDetected && !(_permaCharge && _chargeStarted)) return;
+    
+            if (!_alertPlayed && playerDetected)
+            {
+                AudioManager.Instance.PlayEnemyAlert();
+                _alertPlayed = true;
+            }
+    
             _chargeStarted = true;
             TurnTowardPlayer();
             Move();
