@@ -44,3 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b89e069d7e174a6f98ee348ea3d05282, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameStartTime: 0
+  levelStartTime: 0
+  _firstLevelScene: Level 1
+  _gameCompleteScene: Game Complete!

@@ -915,6 +915,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
+    - target: {fileID: 5755805748808950398, guid: 8eb23730e7b4fd9459dc205b01bad21c, type: 3}
+      propertyPath: _gameCompleteScene
+      value: Game Complete!
+      objectReference: {fileID: 0}
     - target: {fileID: 5978932005695913689, guid: 8eb23730e7b4fd9459dc205b01bad21c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
